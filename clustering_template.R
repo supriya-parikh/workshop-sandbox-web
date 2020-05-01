@@ -1,9 +1,9 @@
 # CLUSTERING IRIS.R
 #
 #
-# Version: 2 
+# Version:  
 #
-# Date:
+# Date: May 1 
 # Author:
 #
 #TOC> ==========================================================================
@@ -71,8 +71,19 @@ qplot(
 
 # Can we exctract the different species into clusters using 2 attributes?
 
+my_data3 <- my_data[,'Petal.Width', "Petal.Length"]
 
+num_clusters <- 3
+
+set.seed(1234)
+
+result <- kmeans(my_data3, num_clusters, nstart = 20 )
 
 # Let's plot sepal length and petal width per cluster
 
 
+qplot(Petal.Width,
+    Petal.Length,
+    data = my_data3,
+    color = factor(result$cluster),
+)
